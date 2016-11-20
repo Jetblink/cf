@@ -84,9 +84,9 @@ class Uri
 
         // This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
         // URI is found, and also fixes the QUERY_STRING server var and $_GET array.
-        if (strncmp($uri, '?/', 2) === 0) { //这里是为兼容 /main.php?/abc/xx/ 的形式 此处 $uri 为 ?/abc/xx/
-            $uri = substr($uri, 2);
-        }
+        // if (strncmp($uri, '?/', 2) === 0) { //这里是为兼容 /main.php?/abc/xx/ 的形式 此处 $uri 为 ?/abc/xx/
+        //     $uri = substr($uri, 2);
+        // }
 
         //在这里 $uri 可能是 ( 这里有个奇怪的= ?xx=yy)的形式，也可能是直接xxx=xx，也可能是/
         $parts = preg_split('#\?#i', $uri, 2);
