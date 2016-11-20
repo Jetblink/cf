@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "e202f1fd055008c392b3194df4dd9dd9",
+    "content-hash": "81651774508f9e4b08ae52b060e4ed3b",
+    "packages": [
+        {
+            "name": "tree6bee/support",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tree6bee/support.git",
+                "reference": "27a73aded9103fe3316adb36a6dbdf465b52d2bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/Tree6bee/support/27a73aded9103fe3316adb36a6dbdf465b52d2bd.zip",
+                "reference": "27a73aded9103fe3316adb36a6dbdf465b52d2bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tree6bee\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "the ctx support library",
+            "keywords": [
+                "Context",
+                "ctx",
+                "support",
+                "tree6bee"
+            ],
+            "time": "2016-11-17 16:28:31"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.0"
+    },
+    "platform-dev": []
+}
