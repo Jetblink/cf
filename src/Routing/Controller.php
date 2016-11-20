@@ -2,6 +2,8 @@
 
 namespace Tree6bee\Cf\Routing;
 
+use Tree6bee\Cf\Contracts\Application;
+
 /**
  * 框架基础控制器
  *
@@ -9,4 +11,13 @@ namespace Tree6bee\Cf\Routing;
  */
 abstract class Controller
 {
+    /**
+     * @var Application
+     */
+    protected $app = '';
+
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
 }
