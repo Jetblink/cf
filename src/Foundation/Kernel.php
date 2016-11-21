@@ -16,8 +16,8 @@ class Kernel
      * $bootstrappers 初始化启动项
      */
     protected $bootstrappers = array(
-        \Tree6bee\Cf\Foundation\Bootstrap\HandleExceptions::class,
-        \Tree6bee\Cf\Foundation\Bootstrap\Runtime::class,
+        '\Tree6bee\Cf\Foundation\Bootstrap\HandleExceptions',
+        '\Tree6bee\Cf\Foundation\Bootstrap\Runtime',
     );
 
     /**
