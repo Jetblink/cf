@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e202f1fd055008c392b3194df4dd9dd9",
-    "content-hash": "81651774508f9e4b08ae52b060e4ed3b",
+    "hash": "985b3c9e8aebfc720526c6176f06fc1b",
+    "content-hash": "3b92d0ceeea2febb2a59015c91775db5",
     "packages": [
         {
             "name": "tree6bee/support",
@@ -54,7 +54,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=5.6"
     },
     "platform-dev": []
 }
