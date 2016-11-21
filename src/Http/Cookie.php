@@ -32,9 +32,11 @@ class Cookie
      * 设置cookie
      * 加密cookie，然后设置
      *
-     * @param $expire 有效期 时间戳 如果小于当前时间则表示删除 如果为0则直到浏览器关闭
-     * @param $path 生效目录 默认当前目录,/ 表示所有
-     * @param $domain 网站域名 如 example.com
+     * @param $name
+     * @param string $value
+     * @param int $expire 有效期 时间戳 如果小于当前时间则表示删除 如果为0则直到浏览器关闭
+     * @param string $path 生效目录 默认当前目录,/ 表示所有
+     * @param string $domain 网站域名 如 example.com
      */
     public function set($name, $value = '', $expire = 0, $path = '/', $domain = '')
     {
@@ -46,6 +48,10 @@ class Cookie
 
     /**
      * 获取cookie，然后解密
+     *
+     * @param null $name
+     * @param null $default
+     * @return mixed|null
      */
     public function get($name = null, $default = null)
     {
