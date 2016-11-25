@@ -19,11 +19,38 @@ class Cookie
     private $encrypter;
 
     /**
+     * 私有克隆函数，防止外办克隆对象
+     */
+    private function __clone()
+    {
+    }
+
+    /**
+     * 框架单例，静态变量保存全局实例
+     * @description 这里设置为private，是为了让该静态属性必须被继承，且必须为 protected
+     */
+    private static $instance;
+
+    /**
+     * 请求单例
+     *
+     * @return $this
+     */
+    public static function getInstance(Encrypt $encrypt = null)
+    {
+        if (empty(static::$instance)) {
+            static::$instance = new static($encrypt);
+        }
+
+        return static::$instance;
+    }
+
+    /**
      * Cookie constructor.
      *
      * @param Encrypt $encrypt
      */
-    public function __construct(Encrypt $encrypt)
+    private function __construct(Encrypt $encrypt)
     {
         $this->encrypter = $encrypt;
     }

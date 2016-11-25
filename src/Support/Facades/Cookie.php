@@ -2,10 +2,10 @@
 
 namespace Tree6bee\Cf\Support\Facades;
 
-use Tree6bee\Cf\Logging\Logger;
-use Tree6bee\Cf\Logging\Writer;
+use Tree6bee\Cf\Http\Cookie as BasicCookie;
+use Tree6bee\Support\Helpers\Encryption\Encrypt;
 
-class Log extends Facade
+class Cookie extends Facade
 {
     //因为是对象，所以facade不会保持单例
     private static $instance;
@@ -13,7 +13,8 @@ class Log extends Facade
     protected static function getFacadeAccessor()
     {
         if (empty(self::$instance)) {
-            self::$instance = new Logger(new Writer(config('storage_path')));
+            $salt = config('cookie.salt', 'c!o*o^k#i-e_s%a$l@t');
+            self::$instance = BasicCookie::getInstance(new Encrypt($salt));
         }
 
         return self::$instance;

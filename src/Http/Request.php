@@ -7,7 +7,6 @@ use Tree6bee\Cf\Http\Request\Uri;
 use Tree6bee\Cf\Exceptions\Exception;
 use Tree6bee\Cf\Contracts\Route as RouteContract;
 use Tree6bee\Cf\Contracts\Application;
-use Tree6bee\Support\Helpers\Encryption\Encrypt;
 
 class Request extends BasicRequest
 {
@@ -20,22 +19,6 @@ class Request extends BasicRequest
      * @var RouteContract
      */
     protected $route;
-
-    /**
-     * Cookies ($_COOKIE).
-     * 在获取到配置后中间件执行前设置
-     *
-     * @var Cookie $cookies
-     */
-    public $cookies;
-
-    /**
-     * Session ($_SESSION).
-     * 在获取到配置后中间件执行前设置
-     *
-     * @var Session $session
-     */
-    public $session;
 
     /**
      * @return Request
@@ -72,29 +55,4 @@ class Request extends BasicRequest
     {
         return $this->route;
     }
-
-    /**
-     * cookies
-     *
-     * @todo 放到中间件中
-     * @param string $salt 如 $this->app->config('cookie.salt', 'c!o*o^k#i-e_s%a$l@t')
-     */
-     public function setCookies($salt)
-     {
-         $this->cookies = new Cookie(new Encrypt($salt));;
-     }
-
-     /**
-      * @param Application $app
-      *
-      * @todo 放到中间件中
-      */
-     public function setSession(Application $app)
-     {
-         $sessionConf = $app->config('session');
-         $this->session = new Session($sessionConf);
-         if ($app->config('session.auto')) {
-             $this->session->start();
-         }
-     }
 }
