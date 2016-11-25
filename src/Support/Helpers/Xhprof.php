@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Helpers;
+namespace Tree6bee\Cf\Support\Helpers;
 
 /**
  * xhprof 统计

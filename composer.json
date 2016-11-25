@@ -11,7 +11,7 @@
 
     "autoload": {
         "files": [
-            "src/Helpers/functions.php"
+            "src/Support/Helpers/functions.php"
         ],
         "psr-4": {
             "Tree6bee\\Cf\\": "src/"
