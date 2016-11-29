@@ -57,6 +57,9 @@ class Session implements SessionContract
             session_name($sessionConf['name']);
         }
         if ($id) {
+            //参考laravel vendor/laravel/framework/src/Illuminate/Session/Store.php
+            //generateSessionId : return sha1(uniqid('', true).Str::random(25).microtime(true));
+            //isValidId : return is_string($id) && preg_match('/^[a-f0-9]{40}$/', $id);
             session_id($id);
         }
         session_start();
