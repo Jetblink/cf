@@ -18,17 +18,12 @@ class Xhprof
     public function handle(Request $request, Closure $next)
     {
         // var_dump(array_slice(func_get_args(), 2));  //其余参数
-        $xhprofOpen = $this->app->config('xhprof.open', false);
-        if ($xhprofOpen) {
-            $this->xhprof = new XhprofHelper($this->app->isDebug(), $this->app->config('xhprof.path'));
-            $this->xhprof->begin();
-        }
+        $this->xhprof = new XhprofHelper($this->app->isDebug(), $this->app->config('xhprof.xhprof_dir'));
+        $this->xhprof->begin();
 
         $response = $next($request);
 
-        if ($xhprofOpen) {
-            $this->xhprof->finish();
-        }
+        $this->xhprof->finish();
 
         //do something
         return $response;
