@@ -32,9 +32,9 @@ class VerifyCsrfToken
     /**
      * 刷新csrf_token
      */
-    public function refreshToken($replace = true)
+    public function refreshToken($replace = false)
     {
-        if ($replace || empty($this->getCsrfToken())) { //更新
+        if ($replace || empty($this->getToken())) { //更新
             $token = Str::rand(16);
             $this->session->set($this->csrfKey, $token);
         }
@@ -49,7 +49,7 @@ class VerifyCsrfToken
      */
     public function tokensMatch($val = '')
     {
-        $token = $this->getCsrfToken();
+        $token = $this->getToken();
 
         //token必须是设置状态同时必须验证通过
         if ($token && $val === $token) {
