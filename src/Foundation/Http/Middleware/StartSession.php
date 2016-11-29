@@ -10,8 +10,18 @@ class StartSession
 {
     public function handle(Request $request, Closure $next)
     {
+        //如果要切换为 response 对象，需要 setcookies
+        return $next($this->startSession($request));
+    }
+
+    protected function startSession()
+    {
         $sessionConf = $this->app->config('session');
-        $this->session = new Session($sessionConf);
-        $this->session->start();
+        $session = new Session($sessionConf);
+        $session->start();
+
+        $request->setSession($session);
+
+        return $request;
     }
 }
