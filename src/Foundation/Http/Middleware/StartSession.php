@@ -14,7 +14,7 @@ class StartSession
         return $next($this->startSession($request));
     }
 
-    protected function startSession()
+    protected function startSession($request)
     {
         $sessionConf = $this->app->config('session');
         $session = new Session($sessionConf);
