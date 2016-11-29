@@ -24,7 +24,7 @@ class VerifyCsrfToken
     /**
      * 获取csrf令牌
      */
-    public function getCsrfToken()
+    public function getToken()
     {
         return $this->session->get($this->csrfKey, '');
     }
@@ -36,7 +36,7 @@ class VerifyCsrfToken
     {
         if ($replace || empty($this->getCsrfToken())) { //更新
             $token = Str::rand(16);
-            $this->session->set($this->csrfKey, $str);
+            $this->session->set($this->csrfKey, $token);
         }
 
         return true;
