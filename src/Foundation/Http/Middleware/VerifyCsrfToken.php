@@ -17,11 +17,12 @@ class VerifyCsrfToken
 
     public function verify($request)
     {
-        $csrfKey = $this->app->config('csrf.key', '_csrf');
+        $csrfKey = '_csrf'; //csrf的session和表单的name
 
         $verifier = new BaseVerifier($csrfKey, $request->session);
         $method = strtolower($_SERVER['REQUEST_METHOD']);
 
+        //csrf只会对post生效,session主动开启的时候才有效
         if ('get' == $method) { //['HEAD', 'GET', 'OPTIONS'] 读
             return $verifier->refreshToken();
         }
