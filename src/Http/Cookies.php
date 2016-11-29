@@ -3,6 +3,7 @@
 namespace Tree6bee\Cf\Http;
 
 use Tree6bee\Support\Helpers\Encryption\Contracts\Encrypt;
+use Tree6bee\Cf\Contracts\Cookies as CookiesContract;
 
 /**
  * 框架cookie操作核心类
@@ -11,7 +12,7 @@ use Tree6bee\Support\Helpers\Encryption\Contracts\Encrypt;
  *
  * @todo 会变更到中间件中,所以需要对文件位置做对应调整
  */
-class Cookie
+class Cookies implements CookiesContract
 {
     /**
      * @var Encrypt $encrypter
@@ -19,58 +20,21 @@ class Cookie
     private $encrypter;
 
     /**
-     * 私有克隆函数，防止外办克隆对象
-     */
-    private function __clone()
-    {
-    }
-
-    /**
-     * 框架单例，静态变量保存全局实例
-     * @description 这里设置为private，是为了让该静态属性必须被继承，且必须为 protected
-     */
-    private static $instance;
-
-    /**
-     * 请求单例
-     *
-     * @return $this
-     */
-    public static function getInstance(Encrypt $encrypt = null)
-    {
-        if (empty(static::$instance)) {
-            static::$instance = new static($encrypt);
-        }
-
-        return static::$instance;
-    }
-
-    /**
      * Cookie constructor.
      *
      * @param Encrypt $encrypt
      */
-    private function __construct(Encrypt $encrypt)
+    public function __construct(Encrypt $encrypt)
     {
         $this->encrypter = $encrypt;
     }
 
     /**
-     * 设置cookie
-     * 加密cookie，然后设置
-     *
-     * @param $name
-     * @param string $value
-     * @param int $expire 有效期 时间戳 如果小于当前时间则表示删除 如果为0则直到浏览器关闭
-     * @param string $path 生效目录 默认当前目录,/ 表示所有
-     * @param string $domain 网站域名 如 example.com
+     * 获取加密算法
      */
-    public function set($name, $value = '', $expire = 0, $path = '/', $domain = '')
+    public function getEncrypter()
     {
-        $value = serialize($value); //如果还有bug则外边加上base64转为16进制
-        $value = $this->encrypter->encode($value);
-        setcookie($name, $value, $expire, $path, $domain);
-        $_COOKIE[$name] = $value;
+        return $this->encrypter;
     }
 
     /**
@@ -102,6 +66,24 @@ class Cookie
     public function has($name)
     {
         return isset($_COOKIE[$name]);
+    }
+
+    /**
+     * 设置cookie
+     * 加密cookie，然后设置
+     *
+     * @param $name
+     * @param string $value
+     * @param int $expire 有效期 时间戳 如果小于当前时间则表示删除 如果为0则直到浏览器关闭
+     * @param string $path 生效目录 默认当前目录,/ 表示所有
+     * @param string $domain 网站域名 如 example.com
+     */
+    public function set($name, $value = '', $expire = 0, $path = '/', $domain = '')
+    {
+        $value = serialize($value); //如果还有bug则外边加上base64转为16进制
+        $value = $this->encrypter->encode($value);
+        setcookie($name, $value, $expire, $path, $domain);
+        $_COOKIE[$name] = $value;
     }
 
     /**

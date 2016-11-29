@@ -3,6 +3,7 @@
 namespace Tree6bee\Cf\Http;
 
 use Tree6bee\Support\Helpers\Arr;
+use Tree6bee\Cf\Contracts\Session as SessionContract;
 
 /**
  * 框架session核心类
@@ -17,7 +18,7 @@ use Tree6bee\Support\Helpers\Arr;
  *
  *  * @todo 会变更到中间件中,所以需要对文件位置做对应调整
  */
-class Session
+class Session implements SessionContract
 {
     /**
      * session config

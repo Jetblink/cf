@@ -7,6 +7,8 @@ use Tree6bee\Cf\Http\Request\Uri;
 use Tree6bee\Cf\Exceptions\Exception;
 use Tree6bee\Cf\Contracts\Route as RouteContract;
 use Tree6bee\Cf\Contracts\Application;
+use Tree6bee\Cf\Contracts\Cookies;
+use Tree6bee\Cf\Contracts\Session;
 
 class Request extends BasicRequest
 {
@@ -19,6 +21,21 @@ class Request extends BasicRequest
      * @var RouteContract
      */
     protected $route;
+
+    /**
+     * Cookies ($_COOKIE).
+     *
+     * @var Cookies $cookies
+     */
+    public $cookies;
+
+    /**
+     * Session ($_SESSION).
+     * 在获取到配置后中间件执行前设置
+     *
+     * @var Session $session
+     */
+    public $session;
 
     /**
      * @return Request
@@ -55,4 +72,28 @@ class Request extends BasicRequest
     {
         return $this->route;
     }
+
+    /**
+     * cookies
+     *
+     * @return Request
+     */
+     public function setCookies(Cookies $cookies)
+     {
+         $this->cookies = $cookies;
+
+         return $this;
+     }
+
+     /**
+      * session
+      *
+      * @return Request
+      */
+     public function setSession(Session $session)
+     {
+         $this->session = $session;
+
+         return $this;
+     }
 }

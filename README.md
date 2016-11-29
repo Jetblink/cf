@@ -4,9 +4,10 @@ the Ctx php framework.
 #### todo
 
 //php 版本最低要求5.3
-* 新增 validate 类,controller基类
+* session 必须调整为中间件，不然没办法灵活的调整
+* 新增 Response validate Cookie Session 类,controller基类
 * 中间件采用类似laravel的方式，url 为 requst 里边的 module/controller/action 来进行匹配
-* csrf中间件
+* csrf 中间件
 * Contracts 类细分为多个文件夹
 * /sample 增加 config 配置样例和 nginx 配置范例(web,static,upload三种环境下的配置)
 

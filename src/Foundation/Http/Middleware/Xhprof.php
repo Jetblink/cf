@@ -3,8 +3,8 @@
 namespace Tree6bee\Cf\Foundation\Http\Middleware;
 
 use Closure;
-use Tree6bee\Cf\Support\Helpers\Xhprof as XhprofHelper;
 use Tree6bee\Cf\Http\Request;
+use Tree6bee\Cf\Support\Helpers\Xhprof as XhprofHelper;
 
 /**
  * Class Xhprof
