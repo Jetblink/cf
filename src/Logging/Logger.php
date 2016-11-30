@@ -3,7 +3,6 @@
 namespace Tree6bee\Cf\Logging;
 
 use Tree6bee\Cf\Contracts\LogWriter;
-use Tree6bee\Cf\Logging\Writer;
 
 class Logger
 {
