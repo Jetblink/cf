@@ -129,7 +129,7 @@ class Route implements RouteContract
         if (! empty($url_suffix_config)) {
             $part =  pathinfo($this->uri);
             $url_suffix = isset($part['extension']) ? $part['extension'] : '';
-            if ($url_suffix && $url_suffix !== $url_suffix_config) {  //不做灵活处理方便统一url
+            if (empty($url_suffix) || $url_suffix !== $url_suffix_config) {  //不做灵活处理方便统一url
                 throw new HttpException(404, 'deny');
             }
             $this->uri = preg_replace("|".preg_quote('.' . $url_suffix_config)."$|i", "", $this->uri);
