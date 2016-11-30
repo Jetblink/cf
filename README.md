@@ -5,7 +5,6 @@ the Ctx php framework.
 
 //php 版本最低要求5.3
 * 新增 Response validate 类,controller基类
-* 中间件采用类似laravel的方式，url 为 requst 里边的 module/controller/action 来进行匹配
 * 增加 nginx 配置范例
     * web,static,upload三种环境下的配置 
     * 静态文件采用独立的域名，上传文件夹是另一个域名，这两个域名，不做php解析，防止上传的东西被执行，同时为了方便做 cdn
