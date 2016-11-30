@@ -74,7 +74,7 @@ class Route implements RouteContract
      */
     public function getController()
     {
-        return '\\' . $this->app->config('dispatch.namespace', 'App') . '\\Controllers\\' . $this->module .'\\' . $this->controller;
+        return '\\' . $this->app->config('dispatch.namespace', 'App') . '\\Controllers\\' . ucfirst($this->module) .'\\' . ucfirst($this->controller);
     }
 
     public function getAction()
@@ -113,9 +113,9 @@ class Route implements RouteContract
     public function setRoute($module = '', $controller = '', $action = '')
     {
         // echo $module, "#", $controller, "#", $action;exit;
-        $this->module = $module ? ucfirst($module) : $this->app->config('default_module', 'Home');
-        $this->controller = $controller ? ucfirst($controller) : $this->app->config('default_controller', 'Index');
-        $this->action = $action ? lcfirst($action) : $this->app->config('default_action', 'index');
+        $this->module = $module ? $module : $this->app->config('default_module', 'home');
+        $this->controller = $controller ? $controller : $this->app->config('default_controller', 'index');
+        $this->action = $action ? $action : $this->app->config('default_action', 'index');
 
         return true;
     }
