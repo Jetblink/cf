@@ -20,7 +20,7 @@ class Request extends BasicRequest
     /**
      * @var RouteContract
      */
-    protected $route;
+    public $route;
 
     /**
      * Cookies ($_COOKIE).
@@ -64,14 +64,6 @@ class Request extends BasicRequest
          $this->route = $route;
          $this->route->parseUri($this);
      }
-
-    /**
-     * @return RouteContract
-     */
-    public function getRoute()
-    {
-        return $this->route;
-    }
 
     /**
      * cookies

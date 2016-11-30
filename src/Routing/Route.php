@@ -26,17 +26,17 @@ class Route implements RouteContract
      */
     protected $app = '';
 
-    /** 
+    /**
      * 应用模块
      */
-    protected $module = ''; 
+    protected $module = '';
  
-    /** 
+    /**
      * 应用控制器
      */
-    protected $controller = ''; 
+    protected $controller = '';
  
-    /** 
+    /**
      * 应用的方法
      */
     protected $action = '';
@@ -52,20 +52,34 @@ class Route implements RouteContract
     public function execute()
     {
         // echo $this->module, "#", $this->controller, "#", $this->action;exit;
+        $controller = $this->getController();
+
         //这里可能会出现命名空间问题,目前正常为了美观就不要加前缀'\\' 在 $className 了
-        $className = $this->app->config('dispatch.namespace', 'App') . '\\Controllers\\' . $this->module .'\\' . $this->controller;
-        if (! class_exists($className)) {
-            throw new HttpException(404, '控制器:' . $className . '不存在.');
+        if (! class_exists($controller)) {
+            throw new HttpException(404, '控制器:' . $controller . '不存在.');
         }
 
-        $app = new $className($this->app);
+        $app = new $controller($this->app);
         $action = $this->action;
         if (! is_callable(array($app, $action))) {
-            throw new HttpException(404, '方法:' . $action . '@' . $className . '不可调用.');
+            throw new HttpException(404, '方法:' . $action . '@' . $controller . '不可调用.');
         }
 
         //beforeAction 和 afterAction 采用中间件实现
         return $app->$action();
+    }
+
+    /**
+     * @see Tree6bee\Cf\Routing\Controller
+     */
+    public function getController()
+    {
+        return '\\' . $this->app->config('dispatch.namespace', 'App') . '\\Controllers\\' . $this->module .'\\' . $this->controller;
+    }
+
+    public function getAction()
+    {
+        return $this->action;
     }
 
     /**
@@ -96,7 +110,7 @@ class Route implements RouteContract
      * @param string $controller
      * @param string $action
      */
-    protected function setRoute($module = '', $controller = '', $action = '')
+    public function setRoute($module = '', $controller = '', $action = '')
     {
         // echo $module, "#", $controller, "#", $action;exit;
         $this->module = $module ? ucfirst($module) : $this->app->config('default_module', 'Home');

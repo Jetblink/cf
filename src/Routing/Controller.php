@@ -16,6 +16,16 @@ abstract class Controller
      */
     protected $app = '';
 
+    /**
+     * @param string $action
+     *
+     * @return array
+     */
+    public static function getMiddleware($action)
+    {
+        return [];
+    }
+
     public function __construct(Application $app)
     {
         $this->app = $app;

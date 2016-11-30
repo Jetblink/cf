@@ -26,11 +26,6 @@ class Kernel
      protected $middleware = array();
 
     /**
-     * 路由中间件
-     */
-     protected $routeMiddleware = array();
-
-    /**
      * ApplicationContract
      */
     protected $app;
@@ -78,7 +73,9 @@ class Kernel
       */
      protected function getRouteMiddleware(Request $request)
      {
-         return $this->routeMiddleware;
+         /** @var $controller \Tree6bee\Cf\Routing\Controller */
+         $controller = $request->route->getController();
+         return $controller::getMiddleware($request->route->getAction());
      }
 
      protected function sendRequestThroughRouter(Request $request)

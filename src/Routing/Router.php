@@ -36,7 +36,7 @@ class Router
      */
     protected function dispatchToRoute(Request $request)
     {
-        $route = $request->getRoute();
+        $route = $request->route;
         return $route->execute();
     }
 }
