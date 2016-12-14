@@ -18,7 +18,7 @@ class Xhprof
     public function handle(Request $request, Closure $next)
     {
         // var_dump(array_slice(func_get_args(), 2));  //其余参数
-        $this->xhprof = new XhprofHelper($this->app->isDebug(), $this->app->config('xhprof.xhprof_dir'));
+        $this->xhprof = new XhprofHelper($this->app->isDebug(), $this->app->config('xhprof_dir'));
         $this->xhprof->begin();
 
         $response = $next($request);
