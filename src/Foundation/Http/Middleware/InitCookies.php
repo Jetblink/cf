@@ -17,7 +17,7 @@ class InitCookies
 
     protected function setCookies($request)
     {
-        $salt = $this->app->config('cookie.salt', 'c!o*o^k#i-e_s%a$l@t');
+        $salt = $this->app->config('cookie_salt', 'c!o*o^k#i-e_s%a$l@t');
         $request->setCookies(new Cookies(new Encrypt($salt)));
 
         return $request;
