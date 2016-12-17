@@ -12,7 +12,7 @@ interface Route
 {
     public function __construct(Application $app);
 
-    public function setRoute($module = '', $controller = '', $action = '');
+    public function setRoute($module, $controller = '', $action = '');
 
     public function parseUri(Request $request);
 

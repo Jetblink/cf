@@ -74,7 +74,8 @@ class Route implements RouteContract
      */
     public function getController()
     {
-        return '\\' . $this->app->config('dispatch.namespace', 'App') . '\\Controllers\\' . ucfirst($this->module) .'\\' . ucfirst($this->controller);
+        $className = '\\' . $this->app->config('namespace', 'App') . '\\Controllers\\';
+        return $className . (empty($this->module) ? '' : ucfirst($this->module) . '\\') . ucfirst($this->controller);
     }
 
     public function getAction()
@@ -94,7 +95,7 @@ class Route implements RouteContract
         $this->uri = $request->uri->get();
 
         if ($this->uri == '') {
-            return $this->setRoute();
+            return $this->setRoute($this->app->config('dispatch.default_module'));
         }
 
         // Do we need to remove the URL suffix?
@@ -110,12 +111,11 @@ class Route implements RouteContract
      * @param string $controller
      * @param string $action
      */
-    public function setRoute($module = '', $controller = '', $action = '')
+    public function setRoute($module, $controller = '', $action = '')
     {
-        // echo $module, "#", $controller, "#", $action;exit;
-        $this->module = $module ? $module : $this->app->config('default_module', 'home');
-        $this->controller = $controller ? $controller : $this->app->config('default_controller', 'index');
-        $this->action = $action ? $action : $this->app->config('default_action', 'index');
+        $this->module = $module;
+        $this->controller = $controller ? $controller : $this->app->config('dispatch.default_controller', 'index');
+        $this->action = $action ? $action : $this->app->config('dispatch.default_action', 'index');
 
         return true;
     }
@@ -151,7 +151,13 @@ class Route implements RouteContract
         }
 
         //获取出路由需要的对应值
-        $router_arr = array_splice($paths, 0, 3);
+
+        //如果要支持3层结构的url，必须提供默认的module
+        $sliceNum = empty($this->app->config('dispatch.default_module')) ? 2 : 3;
+        $router_arr = array_splice($paths, 0, $sliceNum);
+        if (2 == $sliceNum) {
+            array_unshift($router_arr, null);
+        }
 
         // 解析剩余的URL参数
         if ($paths) {
