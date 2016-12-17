@@ -45,7 +45,7 @@ class Application implements ApplicationContract
      *
      * @var Config $config
      */
-    protected $config;
+    private $config;
 
     /**
      * 是否debug环境
@@ -55,15 +55,13 @@ class Application implements ApplicationContract
     /**
      * 异常处理接管类
      */
-    protected $exceptionHandler;
+    private $exceptionHandler;
 
     protected function init(Config $configObj, ExceptionHandler $exceptionHandler)
     {
-        if (empty($this->config)) {
-            $this->config = $configObj;
-            $this->debug = $this->config->get('environment', 'production') == 'development' ? true : false;
-            $this->exceptionHandler = $exceptionHandler;
-        }
+        $this->config = $configObj;
+        $this->debug = $this->config->get('environment', 'production') == 'development' ? true : false;
+        $this->exceptionHandler = $exceptionHandler;
     }
 
     /**
