@@ -7,9 +7,7 @@ namespace Tree6bee\Cf\Contracts;
  */
 interface Application
 {
-    public static function getInstance($appDir = '');
-
-    public function init(Config $configObj, ExceptionHandler $exceptionHandler);
+    public static function getInstance();
 
     public function bootstrapWith($bootstrappers);
 

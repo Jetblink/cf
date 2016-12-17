@@ -27,21 +27,17 @@ class Application implements ApplicationContract
     /**
      * 应用单例
      */
-    public static function getInstance($appDir = '')
+    public static function getInstance()
     {
         if (is_null(self::$instance)) {
-            if (empty($appDir)) {
-                throw new Exception('application directory should not be null');
-            }
-            self::$instance = new self($appDir);
+            self::$instance = new static();
         }
 
         return self::$instance;
     }
 
-    private function __construct($appDir)
+    protected function __construct()
     {
-        $this->appDir = $appDir;
     }
 
     /**
@@ -61,7 +57,7 @@ class Application implements ApplicationContract
      */
     protected $exceptionHandler;
 
-    public function init(Config $configObj, ExceptionHandler $exceptionHandler)
+    protected function init(Config $configObj, ExceptionHandler $exceptionHandler)
     {
         if (empty($this->config)) {
             $this->config = $configObj;
