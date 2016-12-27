@@ -2,6 +2,8 @@
 
 namespace Tree6bee\Cf\Support\Facades;
 
+use RuntimeException;
+
 class Facade
 {
     /**
@@ -35,7 +37,7 @@ class Facade
      *
      * @return string
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected static function getFacadeAccessor()
     {

@@ -70,7 +70,7 @@ class Route implements RouteContract
     }
 
     /**
-     * @see Tree6bee\Cf\Routing\Controller
+     * @see \Tree6bee\Cf\Routing\Controller
      */
     public function getController()
     {
