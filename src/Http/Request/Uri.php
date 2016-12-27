@@ -67,6 +67,7 @@ class Uri
 
     /**
      * 尝试获取URI
+     * 方法依赖 $_SERVER['REQUEST_URI'] 和 $_SERVER['SCRIPT_NAME']
      */
     protected function detectUri()
     {
@@ -74,12 +75,17 @@ class Uri
             return '';
         }
 
+        $scriptName = $this->request->server->get('SCRIPT_NAME');
+        if (empty($scriptName)) {    //可能会出现为 '' 的情况
+            return '';
+        }
+
         $uri = $this->request->server->get('REQUEST_URI');
 
-        if (strpos($uri, $this->request->server->get('SCRIPT_NAME')) === 0) { //入口文件在根目录，url 可能为 /main.php
-            $uri = substr($uri, strlen($this->request->server->get('SCRIPT_NAME')));
-        } elseif (strpos($uri, dirname($this->request->server->get('SCRIPT_NAME'))) === 0) { //入口文件在子文件夹，url 可能为 /dir/main.php
-            $uri = substr($uri, strlen(dirname($this->request->server->get('SCRIPT_NAME'))));
+        if (strpos($uri, $scriptName) === 0) { //入口文件在根目录，url 可能为 /main.php
+            $uri = substr($uri, strlen($scriptName));
+        } elseif (strpos($uri, dirname($scriptName)) === 0) { //入口文件在子文件夹，url 可能为 /dir/main.php
+            $uri = substr($uri, strlen(dirname($scriptName)));
         }
 
         // This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
