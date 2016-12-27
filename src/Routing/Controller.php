@@ -3,6 +3,7 @@
 namespace Tree6bee\Cf\Routing;
 
 use Tree6bee\Cf\Contracts\Application;
+use Tree6bee\Support\Helpers\Arr;
 
 /**
  * 框架基础控制器
@@ -11,6 +12,8 @@ use Tree6bee\Cf\Contracts\Application;
  */
 abstract class Controller
 {
+    protected static $middleware = array();
+
     /**
      * @var Application
      */
@@ -23,7 +26,7 @@ abstract class Controller
      */
     public static function getMiddleware($action)
     {
-        return [];
+        return Arr::get(self::$middleware, $action, array());
     }
 
     public function __construct(Application $app)
