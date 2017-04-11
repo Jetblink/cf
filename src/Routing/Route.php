@@ -53,7 +53,7 @@ class Route implements RouteContract
     {
         // echo $this->module, "#", $this->controller, "#", $this->action;exit;
         $controller = $this->getController();
-        $app = new $controller($this->app);
+        $app = new $controller($this->request);
         $action = $this->action;
         if (! is_callable(array($app, $action))) {
             throw new HttpException(404, '方法:' . $action . '@' . $controller . '不可调用.');
@@ -111,7 +111,6 @@ class Route implements RouteContract
      * @param string $module
      * @param string $controller
      * @param string $action
-     *
      * @return true
      */
     public function setRoute($module, $controller = '', $action = '')

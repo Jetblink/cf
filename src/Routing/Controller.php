@@ -2,7 +2,7 @@
 
 namespace Tree6bee\Cf\Routing;
 
-use Tree6bee\Cf\Contracts\Application;
+use Tree6bee\Cf\Http\Request;
 use Tree6bee\Support\Helpers\Arr;
 
 /**
@@ -15,9 +15,9 @@ abstract class Controller
     protected static $middleware = array();
 
     /**
-     * @var Application
+     * @var Request
      */
-    protected $app = '';
+    protected $request = '';
 
     /**
      * @param string $action
@@ -29,8 +29,8 @@ abstract class Controller
         return Arr::get(self::$middleware, $action, array());
     }
 
-    public function __construct(Application $app)
+    public function __construct(Request $request)
     {
-        $this->app = $app;
+        $this->request = $request;
     }
 }
