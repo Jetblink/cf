@@ -53,12 +53,6 @@ class Route implements RouteContract
     {
         // echo $this->module, "#", $this->controller, "#", $this->action;exit;
         $controller = $this->getController();
-
-        //这里可能会出现命名空间问题,目前正常为了美观就不要加前缀'\\' 在 $className 了
-        if (! class_exists($controller)) {
-            throw new HttpException(404, '控制器:' . $controller . '不存在.');
-        }
-
         $app = new $controller($this->app);
         $action = $this->action;
         if (! is_callable(array($app, $action))) {
@@ -74,8 +68,15 @@ class Route implements RouteContract
      */
     public function getController()
     {
-        $className = '\\' . $this->app->config('namespace', 'App') . '\\Controllers\\';
-        return $className . (empty($this->module) ? '' : ucfirst($this->module) . '\\') . ucfirst($this->controller);
+        $namespace = '\\' . $this->app->config('namespace', 'App') . '\\Controllers\\';
+
+        $controller = $namespace . (empty($this->module) ? '' : ucfirst($this->module) . '\\') . ucfirst($this->controller);
+
+        if (! class_exists($controller)) {
+            throw new HttpException(404, '控制器:' . $controller . '不存在.');
+        }
+
+        return $controller;
     }
 
     public function getAction()
@@ -110,6 +111,8 @@ class Route implements RouteContract
      * @param string $module
      * @param string $controller
      * @param string $action
+     *
+     * @return true
      */
     public function setRoute($module, $controller = '', $action = '')
     {
