@@ -1,5 +1,7 @@
 <?php
 
+use Tree6bee\Cf\Foundation\Application;
+
 if (! function_exists('app')) {
     /**
      * 获取app
@@ -8,7 +10,7 @@ if (! function_exists('app')) {
      */
     function app()
     {
-        return \Tree6bee\Cf\Foundation\Application::getInstance();
+        return Application::getInstance();
     }
 }
 
