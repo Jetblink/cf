@@ -7,7 +7,7 @@ namespace Tree6bee\Cf\Exceptions;
  */
 class HttpException extends Exception
 {
-    private $httpStatusCode;
+    private $statusCode;
 
     /**
      * 异常处理基类
@@ -19,13 +19,23 @@ class HttpException extends Exception
      * other method: $e->getTrace() $e->__toString()
      * ---end---
      *
-     * @param int $httpStatusCode http状态码
+     * @param int $statusCode http状态码
      * @param string $message 异常消息
      * @param int $code 错误码
      */
-    public function __construct($httpStatusCode = 200, $message = '', $code = 0)
+    public function __construct($statusCode = 200, $message = '', $code = 0)
     {
-        $this->httpStatusCode = $httpStatusCode;
+        $this->statusCode = $statusCode;
         parent::__construct($message, $code);
+    }
+
+    /**
+     * 获取http状态码
+     *
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
     }
 }
