@@ -2,47 +2,69 @@
 
 namespace Tree6bee\Cf\Logging;
 
-use Tree6bee\Cf\Contracts\LogWriter;
+use Tree6bee\Cf\Contracts\Log as LogContract;
+use Tree6bee\Cf\Exceptions\Exception;
+use Tree6bee\Support\Helpers\Io;
 
-class Logger
+class Logger implements LogContract
 {
     /**
-     * 日志写入类
+     * @var static
      */
-    private $writer;
+    protected static $instance;
 
-    public function __construct(LogWriter $writer)
+    //Facade写法
+    public static function __callStatic($level, $args)
     {
-        $this->writer = $writer;
-    }
-
-    public function info($message, $context = array())
-    {
-        return $this->log(__FUNCTION__, $message, $context);
-    }
-
-    public function debug($message, $context = array())
-    {
-        return $this->log(__FUNCTION__, $message, $context);
-    }
-
-    public function error($message, $context = array())
-    {
-        return $this->log(__FUNCTION__, $message, $context);
-    }
-
-    public function log($level, $message, $context)
-    {
-        $content = $message . "\n";
-
-        if (! empty($context)) {
-            $content .= print_r($context, true);
+        if (empty(static::$instance)) {
+            static::$instance = new static();
         }
-        return $this->writer->write($level, $content);
+
+        switch (count($args)) {
+            case 1:
+                return static::$instance->write($level, $args[0]);
+            default:
+                throw new Exception('参数数量错误');
+        }
     }
 
-    public function getWriter()
+    public function __construct()
     {
-        return $this->writer;
+    }
+
+    public function write($level, $content)
+    {
+        $filename = $this->getLogFile($level);
+        Io::write($filename, $content);
+
+        return $this;
+    }
+
+    protected function getLogFile($level)
+    {
+        $baseLogPath = $this->getStoragePath() . '/logs/';
+
+        //可能权限出问题，做更多处理
+        $wrapper = (php_sapi_name() == 'cli') ? 'cli' : 'web';
+
+        $logPath = $baseLogPath . $wrapper;
+
+        //日志路径
+        $logPath = $this->getLogPath($logPath);
+
+        return $logPath . $level . '.log';
+    }
+
+    protected function getLogPath($dir)
+    {
+        return $dir . '/'. date('Ym') . '/';
+        //或则
+        //return $dir . '/cf/';
+    }
+
+    protected function getStoragePath()
+    {
+//        return config('storage_path');
+        return '/tmp';
     }
 }
