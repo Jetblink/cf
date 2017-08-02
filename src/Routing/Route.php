@@ -30,12 +30,12 @@ class Route implements RouteContract
      * 应用模块
      */
     protected $module = '';
- 
+
     /**
      * 应用控制器
      */
     protected $controller = '';
- 
+
     /**
      * 应用的方法
      */
@@ -68,9 +68,13 @@ class Route implements RouteContract
      */
     public function getController()
     {
-        $namespace = '\\' . $this->app->config('namespace', 'App') . '\\Controllers\\';
+        if (php_sapi_name() == 'cli') { //命令行模式
+            $controller = '\\App\\Commands\\';
+        } else {
+            $controller = '\\App\\Controllers\\';
+        }
 
-        $controller = $namespace . (empty($this->module) ? '' : ucfirst($this->module) . '\\') . ucfirst($this->controller);
+        $controller = $controller . (empty($this->module) ? '' : ucfirst($this->module) . '\\') . ucfirst($this->controller);
 
         if (! class_exists($controller)) {
             throw new HttpException(404, '控制器:' . $controller . '不存在.');
