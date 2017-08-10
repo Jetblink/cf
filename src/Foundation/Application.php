@@ -2,7 +2,6 @@
 
 namespace Tree6bee\Cf\Foundation;
 
-use Tree6bee\Cf\Exceptions\Exception;
 use Tree6bee\Cf\Contracts\Application as ApplicationContract;
 use Tree6bee\Cf\Contracts\Config;
 use Tree6bee\Cf\Contracts\ExceptionHandler;

@@ -3,7 +3,6 @@
 namespace Tree6bee\Cf\Logging;
 
 use Tree6bee\Cf\Contracts\Log as LogContract;
-use Tree6bee\Cf\Exceptions\Exception;
 use Tree6bee\Support\Helpers\Io;
 
 class Logger implements LogContract
@@ -24,7 +23,7 @@ class Logger implements LogContract
             case 1:
                 return static::$instance->write($level, $args[0]);
             default:
-                throw new Exception('参数数量错误');
+                throw new \Exception('参数数量错误');
         }
     }
 

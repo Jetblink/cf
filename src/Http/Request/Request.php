@@ -6,7 +6,7 @@ use Tree6bee\Cf\Http\Request\Bags\ParameterBag;
 use Tree6bee\Cf\Http\Request\Bags\FileBag;
 use Tree6bee\Cf\Http\Request\Bags\ServerBag;
 use Tree6bee\Cf\Http\Request\Bags\HeaderBag;
-use Tree6bee\Cf\Exceptions\Exception;
+use Exception;
 
 /**
  * Request基础类

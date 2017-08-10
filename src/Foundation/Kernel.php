@@ -9,7 +9,6 @@ use Tree6bee\Cf\Contracts\Route as RouteContract;
 use Tree6bee\Cf\Providers\MiddlewareProvider;
 use Tree6bee\Cf\Routing\Route;
 use Tree6bee\Cf\Routing\Router;
-use Tree6bee\Cf\Exceptions\Exception;
 
 class Kernel
 {
@@ -78,7 +77,7 @@ class Kernel
          $controller = $request->route->getController();
          $controllerMiddleware = $controller::getMiddleware($request->route->getAction());
          if (! is_array($controllerMiddleware)) {
-             throw new Exception('控制器中间件必须为数组');
+             throw new \Exception('控制器中间件必须为数组');
          }
 
          return $controllerMiddleware;

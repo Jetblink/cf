@@ -4,9 +4,7 @@ namespace Tree6bee\Cf\Http;
 
 use Tree6bee\Cf\Http\Request\Request as BasicRequest;
 use Tree6bee\Cf\Http\Request\Uri;
-use Tree6bee\Cf\Exceptions\Exception;
 use Tree6bee\Cf\Contracts\Route as RouteContract;
-use Tree6bee\Cf\Contracts\Application;
 use Tree6bee\Cf\Contracts\Cookies;
 use Tree6bee\Cf\Contracts\Session;
 
@@ -50,7 +48,7 @@ class Request extends BasicRequest
     public static function createFromBase(BasicRequest $request)
     {
         if (! $request instanceof static) {
-            throw new Exception('Request对象必须为应用层对象');
+            throw new \Exception('Request对象必须为应用层对象');
         }
 
         //设置请求的基础uri

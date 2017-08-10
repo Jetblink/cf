@@ -2,7 +2,7 @@
 
 namespace Tree6bee\Cf\Http\Request\Bags;
 
-use Tree6bee\Cf\Exceptions\Exception;
+use Exception;
 
 /**
  * HeaderBag is a container for HTTP headers.
