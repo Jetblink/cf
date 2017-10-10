@@ -43,11 +43,13 @@ class Xhprof
      */
     public function begin()
     {
-        if (extension_loaded('xhprof')) {
+        if (extension_loaded('tideways')) { //xhprof 扩展
             include $this->xhprofRoot . "/xhprof_lib/utils/xhprof_lib.php";
             include $this->xhprofRoot . "/xhprof_lib/utils/xhprof_runs.php";
             $this->xhprofNamespace = 'CtxFramework';
-            xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY, $this->xhprofIgnoreFun);  //让xhprof显示cpu
+            //让xhprof显示cpu
+            tideways_enable(TIDEWAYS_FLAGS_CPU + TIDEWAYS_FLAGS_MEMORY, $this->xhprofIgnoreFun);
+            //xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY, $this->xhprofIgnoreFun);
         }
     }
 
@@ -57,7 +59,8 @@ class Xhprof
     public function finish()
     {
         if (! empty($this->xhprofNamespace)) {
-            $xhprof_data = xhprof_disable();
+            $xhprof_data = tideways_disable();
+            //$xhprof_data = xhprof_disable();
             // print_r($xhprof_data);exit;
             $xhprof_runs = new \XHProfRuns_Default();
             $run_id = $xhprof_runs->save_run($xhprof_data, $this->xhprofNamespace);
