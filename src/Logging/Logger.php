@@ -3,7 +3,7 @@
 namespace Tree6bee\Cf\Logging;
 
 use Tree6bee\Cf\Contracts\Log as LogContract;
-use Tree6bee\Support\Helpers\Io;
+use Tree6bee\Support\Helpers\File;
 
 class Logger implements LogContract
 {
@@ -34,7 +34,7 @@ class Logger implements LogContract
     public function write($level, $content)
     {
         $filename = $this->getLogFile($level);
-        Io::write($filename, $content);
+        File::write($filename, $content);
 
         return $this;
     }

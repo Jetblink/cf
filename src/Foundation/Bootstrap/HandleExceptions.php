@@ -28,8 +28,7 @@ class HandleExceptions
     public function bootstrap()
     {
         $handler = $this->app->getExceptionHandler();
-        new BasicHandleExceptions(function ($e) use ($handler) {
-            call_user_func([$handler, 'handle'], $e);
-        });
+
+        (new BasicHandleExceptions($handler))->handle();
     }
 }
