@@ -1,11 +1,37 @@
 <?php
 
-namespace Tree6bee\Cf\Support\Helpers;
+namespace Tree6bee\Cf\Foundation\Middleware;
+
+use Closure;
+use Tree6bee\Cf\Foundation\Application;
+
+/**
+ * Class Xhprof
+ *
+ */
+class Xhprof
+{
+    protected $xhprof;
+
+    public function handle(Application $app, Closure $next)
+    {
+        // var_dump(array_slice(func_get_args(), 2));  //其余参数
+        $this->xhprof = new XhprofHelper(true, $app->config('xhprof_dir'));
+        $this->xhprof->begin();
+
+        $response = $next($app);
+
+        $this->xhprof->finish();
+
+        //do something
+        return $response;
+    }
+}
 
 /**
  * xhprof 统计
  */
-class Xhprof
+class XhprofHelper
 {
     /**
      * isdebug

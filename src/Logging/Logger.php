@@ -2,10 +2,9 @@
 
 namespace Tree6bee\Cf\Logging;
 
-use Tree6bee\Cf\Contracts\Log as LogContract;
 use Tree6bee\Support\Helpers\File;
 
-class Logger implements LogContract
+class Logger
 {
     /**
      * @var static
@@ -44,7 +43,7 @@ class Logger implements LogContract
         $baseLogPath = $this->getStoragePath() . '/logs/';
 
         //可能权限出问题，做更多处理
-        $wrapper = (php_sapi_name() == 'cli') ? 'cli' : 'web';
+        $wrapper = (PHP_SAPI == 'cli') ? 'cli' : 'web';
 
         $logPath = $baseLogPath . $wrapper;
 

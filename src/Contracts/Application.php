@@ -2,18 +2,49 @@
 
 namespace Tree6bee\Cf\Contracts;
 
-/**
- * 框架配置获取
- */
 interface Application
 {
+    /**
+     * 应用单例
+     *
+     * @return static
+     */
     public static function getInstance();
 
-    public function bootstrapWith($bootstrappers);
+    /**
+     * 获取应用配置
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    public function config($key = null, $default = null);
 
-    public function isDebug();
+    /**
+     * 运行
+     */
+    public function run();
 
-    public function getExceptionHandler();
+    /**
+     * handle request
+     *
+     * @return string
+     */
+    public function handle();
 
-    public function config($item = null, $default = null, $file = 'main');
+    /**
+     * 获取路由
+     *
+     * @return \Tree6bee\Cf\Routing\Router
+     */
+    public function getRouter();
+
+    /**
+     * 获取路由参数
+     *
+     * @param null $key
+     * @param null $default
+     * @return mixed
+     */
+    public function getAttr($key = null, $default = null);
 }
