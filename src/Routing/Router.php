@@ -378,9 +378,11 @@ class Router
      */
     protected function getControllerName($controller)
     {
-        // if (PHP_SAPI == 'cli') { //命令行模式
-
-        $controller = sprintf('\\App\\Controllers\\%s', $controller);
+         if (PHP_SAPI == 'cli') { //命令行模式
+             $controller = '\\App\\Commands\\' . $controller;
+         } else {
+             $controller = '\\App\\Controllers\\' . $controller;
+         }
 
         if (! class_exists($controller)) {
             throw new HttpException(404, '控制器:' . $controller . '不存在.');
