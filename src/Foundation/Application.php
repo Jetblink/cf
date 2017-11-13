@@ -91,6 +91,11 @@ class Application implements ApplicationContract, MiddlewareProvider
     }
 
     /**
+     * 全局中间件
+     */
+    protected $middleware = [];
+
+    /**
      * handle request
      *
      * @return string
@@ -101,35 +106,13 @@ class Application implements ApplicationContract, MiddlewareProvider
 
         $middleware = array_merge(
             $this->middleware,
-            $this->getRouteMiddleware()
+            $this->router->getRouteMiddleware()
         );
 
         return $this->sendThroughPipeline($middleware, function () {
-            $controller = $this->router->getController();
-            $action = $this->router->getAction();
-            return (new $controller($this))->$action();
+            return $this->router->execute($this);
         });
     }
-
-    /**
-     * @var string $controller
-     */
-//    protected $controller;
-
-    /**
-     * @var string $action
-     */
-//    protected $action;
-
-    /**
-     * @var array $args
-     */
-//    protected $args;
-
-    /**
-     * 全局中间件
-     */
-    protected $middleware = [];
 
     /**
      * Send the request through the pipeline with the given callback.
@@ -156,22 +139,6 @@ class Application implements ApplicationContract, MiddlewareProvider
         $middleware = new $middleware();
         $middleware->app = $this;
         return $middleware;
-    }
-
-    /**
-     * 路由中间件
-     *
-     * @return array
-     * @throws \Exception
-     */
-    protected function getRouteMiddleware()
-    {
-        /** @var \Tree6bee\Cf\Routing\Controller $controller */
-        $controller = $this->router->getController();
-        $action = $this->router->getAction();
-        $controllerMiddleware = $controller::getMiddleware($action);
-
-        return (array)$controllerMiddleware;
     }
 
     /**

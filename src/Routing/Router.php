@@ -6,6 +6,7 @@ use FastRoute\RouteCollector;
 use FastRoute\Dispatcher;
 use InvalidArgumentException;
 use RuntimeException;
+use Tree6bee\Cf\Contracts\Application;
 use Tree6bee\Cf\Exceptions\HttpException;
 use Tree6bee\Support\Helpers\Arr;
 
@@ -426,5 +427,29 @@ class Router
     public function getAttr($key = null, $default = null)
     {
         return Arr::get($this->attr, $key, $default);
+    }
+
+    /**
+     *
+     * 路由中间件
+     *
+     * @return array
+     */
+    public function getRouteMiddleware()
+    {
+        /** @var \Tree6bee\Cf\Routing\Controller $controller */
+        $controller = $this->getController();
+        $action = $this->getAction();
+        $controllerMiddleware = $controller::getMiddleware($action);
+
+        return (array)$controllerMiddleware;
+    }
+
+    public function execute(Application $app)
+    {
+        $controller = $this->getController();
+        $action = $this->getAction();
+
+        return (new $controller($app))->$action();
     }
 }
