@@ -438,18 +438,16 @@ class Router
     public function getRouteMiddleware()
     {
         /** @var \Tree6bee\Cf\Routing\Controller $controller */
-        $controller = $this->getController();
-        $action = $this->getAction();
-        $controllerMiddleware = $controller::getMiddleware($action);
+        $controller = $this->controller;
+        $controllerMiddleware = $controller::getMiddleware($this->action);
 
         return (array)$controllerMiddleware;
     }
 
     public function execute(Application $app)
     {
-        $controller = $this->getController();
-        $action = $this->getAction();
-
-        return (new $controller($app))->$action();
+        /** @var \Tree6bee\Cf\Routing\Controller $controller */
+        $controller = $this->controller;
+        return (new $controller($app))->{$this->action}();
     }
 }
