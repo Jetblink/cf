@@ -87,7 +87,7 @@ class Application implements ApplicationContract, MiddlewareProvider
     {
         $response = $this->handle();
 
-        echo $response;
+        $response->send();
     }
 
     /**
@@ -98,7 +98,7 @@ class Application implements ApplicationContract, MiddlewareProvider
     /**
      * handle request
      *
-     * @return string
+     * @return Response
      */
     public function handle()
     {

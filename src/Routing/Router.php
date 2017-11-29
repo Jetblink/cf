@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use RuntimeException;
 use Tree6bee\Cf\Contracts\Application;
 use Tree6bee\Cf\Exceptions\HttpException;
+use Tree6bee\Cf\Foundation\Response;
 use Tree6bee\Support\Helpers\Arr;
 
 class Router
@@ -448,6 +449,6 @@ class Router
     {
         /** @var \Tree6bee\Cf\Routing\Controller $controller */
         $controller = $this->controller;
-        return (new $controller($app))->{$this->action}();
+        return Response::create((new $controller($app))->{$this->action}());
     }
 }
