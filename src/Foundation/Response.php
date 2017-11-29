@@ -20,26 +20,9 @@ class Response
      */
     protected $content;
 
-    public function __construct($content)
+    public function __construct($content = '')
     {
         $this->setContent($content);
-    }
-
-    /**
-     * Factory method for chainability.
-     *
-     * Example:
-     *
-     *     return Response::create($body, 200)
-     *         ->setSharedMaxAge(300);
-     *
-     * @param mixed $content The response content, see setContent()
-     *
-     * @return static
-     */
-    public static function create($content = '')
-    {
-        return new static($content);
     }
 
     /**
@@ -55,7 +38,7 @@ class Response
      */
     public function setContent($content)
     {
-        if ( null !== $content && !is_scalar($content) &&
+        if (null !== $content && !is_string($content) && !is_numeric($content) &&
             ! is_callable(array($content, '__toString'))) {
             throw new \Exception(sprintf(
                 'The Response content must be a string or object implementing __toString(), "%s" given.',

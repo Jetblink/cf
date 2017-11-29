@@ -449,6 +449,8 @@ class Router
     {
         /** @var \Tree6bee\Cf\Routing\Controller $controller */
         $controller = $this->controller;
-        return Response::create((new $controller($app))->{$this->action}());
+        $response = (new $controller($app))->{$this->action}();
+
+        return new Response($response);
     }
 }
