@@ -332,6 +332,15 @@ class Router
     }
 
     /**
+     * 路由默认 module controller action
+     */
+    protected $defRouteVar = [
+        'module'        => 'home',
+        'controller'    => 'index',
+        'action'        => 'index',
+    ];
+
+    /**
      * 解析映射路由和路由文件中的路由
      *
      * @param $handler
@@ -345,11 +354,7 @@ class Router
             return ;
         }
 
-        $var = array_merge([
-            'module'        => 'home',
-            'controller'    => 'index',
-            'action'        => 'index',
-        ], $var);
+        $var = array_merge($this->defRouteVar, $var);
         $args = [];
         // 解析剩余的URL参数
         if (isset($var['paths'])) {
