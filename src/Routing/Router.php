@@ -232,14 +232,14 @@ class Router
     public function getUri()
     {
         if (PHP_SAPI == 'cli') {
-            return '/'. ltrim(Arr::get($_SERVER['argv'], 1, '/'), '/');
+            return '/'. trim(Arr::get($_SERVER['argv'], 1, '/'), '/');
         }
 
         $requestUri = parse_url('http://example.com' . Arr::get($_SERVER, 'REQUEST_URI', ''), PHP_URL_PATH);
 
         $requestUri = empty($requestUri) ? '/' : $this->filterPath($requestUri);
 
-        return '/' . ltrim($requestUri, '/');
+        return '/' . trim($requestUri, '/');
 
         // nginx 这种配置不可能走下边逻辑 try_files $uri $uri/ /index.php?$query_string;
 
