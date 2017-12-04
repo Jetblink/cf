@@ -14,7 +14,7 @@ class Handler extends ExceptionsHandler
      */
     protected $debug;
 
-    public function __construct($debug, $collapseDir = '', $cfVersion = 'CtxFramework/1.0')
+    public function __construct($debug = false, $collapseDir = '', $cfVersion = 'CtxFramework/1.0')
     {
         $this->debug = $debug;
 
