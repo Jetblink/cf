@@ -31,7 +31,7 @@ class Handler extends ExceptionsHandler
         if ($this->debug) {
             parent::renderHttpException($e);
         } else {
-             $this->renderErrorPage($e);
+             $this->renderError($e);
         }
     }
 
@@ -40,7 +40,7 @@ class Handler extends ExceptionsHandler
      *
      * @param $e
      */
-    private function renderErrorPage($e)
+    protected function renderError($e)
     {
         $statusCode = 500;
         if ($e instanceof HttpException) {
