@@ -61,7 +61,7 @@ class Application implements ApplicationContract, MiddlewareProvider
      * @var array
      */
     protected $config = [
-        'environment'   => 'production',
+        //'environment'   => 'production',
         'debug'         => false,
         'cfVersion'     => 'CtxFramework/1.0',
         'timezone'      => 'PRC',
