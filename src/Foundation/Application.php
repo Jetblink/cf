@@ -137,7 +137,8 @@ class Application implements ApplicationContract, MiddlewareProvider
     {
         //不需要进行特殊处理的中间件
         $middleware = new $middleware();
-        $middleware->app = $this;
+        //不需要了，已经在参数中进行了传递
+        //$middleware->app = $this;
         return $middleware;
     }
 
