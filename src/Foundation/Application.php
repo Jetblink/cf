@@ -63,7 +63,7 @@ class Application implements ApplicationContract, MiddlewareProvider
     protected $config = [
         //'environment'   => 'production',
         'debug'         => false,
-        'cfVersion'     => 'CtxFramework/1.0',
+        'cfVersion'     => 'TFramework/1.0',
         'timezone'      => 'PRC',
         // 'xhprof_dir'    => __DIR__ . '/../public/xhprof',
     ];

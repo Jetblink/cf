@@ -72,7 +72,7 @@ class XhprofHelper
         if (extension_loaded('tideways')) { //xhprof 扩展
             include $this->xhprofRoot . "/xhprof_lib/utils/xhprof_lib.php";
             include $this->xhprofRoot . "/xhprof_lib/utils/xhprof_runs.php";
-            $this->xhprofNamespace = 'CtxFramework';
+            $this->xhprofNamespace = 'TFramework';
             //让xhprof显示cpu
             tideways_enable(TIDEWAYS_FLAGS_CPU + TIDEWAYS_FLAGS_MEMORY, $this->xhprofIgnoreFun);
             //xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY, $this->xhprofIgnoreFun);
