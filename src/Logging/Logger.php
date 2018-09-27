@@ -11,7 +11,14 @@ class Logger
      */
     protected static $instance;
 
-    //Facade写法
+    /**
+     * Facade写法
+     *
+     * @param $level
+     * @param $args
+     * @return Logger
+     * @throws \Exception
+     */
     public static function __callStatic($level, $args)
     {
         if (empty(static::$instance)) {
@@ -30,6 +37,12 @@ class Logger
     {
     }
 
+    /**
+     * @param $level
+     * @param $content
+     * @return $this
+     * @throws \Exception
+     */
     public function write($level, $content)
     {
         $filename = $this->getLogFile($level);

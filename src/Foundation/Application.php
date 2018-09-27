@@ -188,6 +188,7 @@ class Application implements ApplicationContract, MiddlewareProvider
 
     /**
      * 初始化路由
+     * @throws \Tree6bee\Framework\Exceptions\HttpException | \RuntimeException
      */
     protected function initRouter()
     {

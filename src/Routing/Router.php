@@ -28,6 +28,7 @@ class Router
     /**
      * Router constructor.
      * @param string|boolean $cacheFile 缓存文件
+     * @throws HttpException | RuntimeException
      */
     public function __construct($cacheFile = false)
     {
@@ -52,9 +53,10 @@ class Router
     /**
      * Register a route with the application.
      *
-     * @param  string  $uri
-     * @param  mixed  $action
+     * @param  string $uri
+     * @param  mixed $action
      * @return $this
+     * @throws \Exception
      */
     public function get($uri, $action)
     {
@@ -66,9 +68,10 @@ class Router
     /**
      * Register a route with the application.
      *
-     * @param  string  $uri
-     * @param  mixed  $action
+     * @param  string $uri
+     * @param  mixed $action
      * @return $this
+     * @throws \Exception
      */
     public function post($uri, $action)
     {
@@ -80,9 +83,10 @@ class Router
     /**
      * Register a route with the application.
      *
-     * @param  string  $uri
-     * @param  mixed  $action
+     * @param  string $uri
+     * @param  mixed $action
      * @return $this
+     * @throws \Exception
      */
     public function put($uri, $action)
     {
@@ -94,9 +98,10 @@ class Router
     /**
      * Register a route with the application.
      *
-     * @param  string  $uri
-     * @param  mixed  $action
+     * @param  string $uri
+     * @param  mixed $action
      * @return $this
+     * @throws \Exception
      */
     public function patch($uri, $action)
     {
@@ -108,9 +113,10 @@ class Router
     /**
      * Register a route with the application.
      *
-     * @param  string  $uri
-     * @param  mixed  $action
+     * @param  string $uri
+     * @param  mixed $action
      * @return $this
+     * @throws \Exception
      */
     public function delete($uri, $action)
     {
@@ -125,6 +131,7 @@ class Router
      * @param  string  $uri
      * @param  mixed  $action
      * @return $this
+     * @throws \Exception
      */
     public function options($uri, $action)
     {
@@ -139,6 +146,7 @@ class Router
      * @param  string  $uri
      * @param  mixed  $action
      * @return $this
+     * @throws \Exception
      */
     public function any($uri, $action)
     {

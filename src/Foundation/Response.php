@@ -20,6 +20,11 @@ class Response
      */
     protected $content;
 
+    /**
+     * Response constructor.
+     * @param string $content
+     * @throws \Exception
+     */
     public function __construct($content = '')
     {
         $this->setContent($content);
