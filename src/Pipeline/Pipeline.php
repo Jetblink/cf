@@ -1,9 +1,9 @@
 <?php
 
-namespace Tree6bee\Cf\Pipeline;
+namespace Tree6bee\Framework\Pipeline;
 
 use Closure;
-use Tree6bee\Cf\Contracts\MiddlewareProvider;
+use Tree6bee\Framework\Contracts\MiddlewareProvider;
 
 class Pipeline
 {

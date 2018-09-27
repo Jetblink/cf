@@ -1,14 +1,14 @@
 <?php
 
-namespace Tree6bee\Cf\Routing;
+namespace Tree6bee\Framework\Routing;
 
 use FastRoute\RouteCollector;
 use FastRoute\Dispatcher;
 use InvalidArgumentException;
 use RuntimeException;
-use Tree6bee\Cf\Contracts\Application;
-use Tree6bee\Cf\Exceptions\HttpException;
-use Tree6bee\Cf\Foundation\Response;
+use Tree6bee\Framework\Contracts\Application;
+use Tree6bee\Framework\Exceptions\HttpException;
+use Tree6bee\Framework\Foundation\Response;
 use Tree6bee\Support\Helpers\Arr;
 
 class Router
@@ -443,7 +443,7 @@ class Router
      */
     public function getRouteMiddleware()
     {
-        /** @var \Tree6bee\Cf\Routing\Controller $controller */
+        /** @var \Tree6bee\Framework\Routing\Controller $controller */
         $controller = $this->controller;
         $controllerMiddleware = $controller::getMiddleware($this->action);
 
@@ -452,7 +452,7 @@ class Router
 
     public function execute(Application $app)
     {
-        /** @var \Tree6bee\Cf\Routing\Controller $controller */
+        /** @var \Tree6bee\Framework\Routing\Controller $controller */
         $controller = $this->controller;
         $response = (new $controller($app))->{$this->action}();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Logging;
+namespace Tree6bee\Framework\Logging;
 
 use Tree6bee\Support\Helpers\File;
 

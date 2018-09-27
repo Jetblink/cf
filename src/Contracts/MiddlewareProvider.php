@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Contracts;
+namespace Tree6bee\Framework\Contracts;
 
 interface MiddlewareProvider
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Exceptions;
+namespace Tree6bee\Framework\Exceptions;
 
 /**
  * 框架异常

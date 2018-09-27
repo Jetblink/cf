@@ -1,11 +1,11 @@
 <?php
 
-namespace Tree6bee\Cf\Foundation;
+namespace Tree6bee\Framework\Foundation;
 
-use Tree6bee\Cf\Contracts\Application as ApplicationContract;
-use Tree6bee\Cf\Contracts\MiddlewareProvider;
-use Tree6bee\Cf\Pipeline\Pipeline;
-use Tree6bee\Cf\Routing\Router;
+use Tree6bee\Framework\Contracts\Application as ApplicationContract;
+use Tree6bee\Framework\Contracts\MiddlewareProvider;
+use Tree6bee\Framework\Pipeline\Pipeline;
+use Tree6bee\Framework\Routing\Router;
 use Tree6bee\Support\Helpers\Arr;
 use Tree6bee\Support\Helpers\Exceptions\HandleExceptions;
 use Tree6bee\Support\Helpers\Exceptions\Handler;

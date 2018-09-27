@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Foundation;
+namespace Tree6bee\Framework\Foundation;
 
 /**
  * 只处理 content 实体，方便中间件中传递对象而不是具体的 响应内容。
@@ -11,7 +11,7 @@ namespace Tree6bee\Cf\Foundation;
  * !!! 如果返回的是响应是流的话直接 content 为null就行了，
  *
  * Class Response
- * @package Tree6bee\Cf\Foundation
+ * @package Tree6bee\Framework\Foundation
  */
 class Response
 {

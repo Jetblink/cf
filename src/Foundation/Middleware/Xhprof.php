@@ -1,9 +1,9 @@
 <?php
 
-namespace Tree6bee\Cf\Foundation\Middleware;
+namespace Tree6bee\Framework\Foundation\Middleware;
 
 use Closure;
-use Tree6bee\Cf\Foundation\Application;
+use Tree6bee\Framework\Foundation\Application;
 
 /**
  * Class Xhprof

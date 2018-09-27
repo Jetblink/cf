@@ -1,8 +1,8 @@
 <?php
 
-namespace Tree6bee\Cf\Routing;
+namespace Tree6bee\Framework\Routing;
 
-use Tree6bee\Cf\Contracts\Application;
+use Tree6bee\Framework\Contracts\Application;
 use Tree6bee\Support\Helpers\Arr;
 
 /**

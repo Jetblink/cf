@@ -1,7 +1,7 @@
 {
-    "name": "tree6bee/cf",
+    "name": "tree6bee/framework",
     "description": "the Ctx php framework",
-    "keywords": ["ctx", "framework", "tree6bee"],
+    "keywords": ["framework", "tree6bee"],
     "license": "MIT",
 
     "require": {
@@ -12,7 +12,7 @@
 
     "autoload": {
         "psr-4": {
-            "Tree6bee\\Cf\\": "src/"
+            "Tree6bee\\Framework\\": "src/"
         }
     }
 }

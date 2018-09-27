@@ -1,6 +1,6 @@
 <?php
 
-namespace Tree6bee\Cf\Contracts;
+namespace Tree6bee\Framework\Contracts;
 
 interface Application
 {
@@ -35,7 +35,7 @@ interface Application
     /**
      * 获取路由
      *
-     * @return \Tree6bee\Cf\Routing\Router
+     * @return \Tree6bee\Framework\Routing\Router
      */
     public function getRouter();
 
